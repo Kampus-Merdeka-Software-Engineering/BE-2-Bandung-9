@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
+const bcrypt = require('bcrypt');
+const session = require('express-session')
 
 const app = express();
 const port = 3000;
@@ -9,6 +11,11 @@ const port = 3000;
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(session({
+  secret: 'secret_key',
+  resave: false,
+  saveUninitialized: true
+}));
 
 // postgreSQL Pool
 const pool = new Pool({
@@ -25,75 +32,77 @@ pool.on('error', (err, client) => {
 
 // Routes
 // Endpoint untuk membuat akun baru
-  app.post('/api/signup', (req, res) => {
-    // Logic untuk membuat akun
-    const fullname = req.body.fullname;
-    const username = req.body.username;
-    const email = req.body.email;
-    const password = req.body.password;
+app.post('/api/signup', async (req, res) => {
+  // Logic untuk membuat akun
+  const { fullname, username, email, password } = req.body;
 
-    if (!fullname || !username || !email || !password) {
-        return res.status(400).json({ error: 'Missing required fields' });
-      }
-    
+  if (!fullname || !username || !email || !password) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const query = 'INSERT INTO user_accounts(fullname, username, email, password) VALUES ($1, $2, $3, $4)';
-    const values = [fullname, username, email, password];
+    const values = [fullname, username, email, hashedPassword];
 
-    pool.query(query, values, (err, result) => {
-      if (err) {
-        console.error('Error executing query', err);
-        return res.status(500).json({ error: 'Error creating account' });
+    await pool.query(query, values);
+
+    res.status(201).json({
+      status: 'success',
+      message: 'Account created successfully!',
+      user: {
+        fullname,
+        username,
+        email
       }
-      res.status(201).json({
-        status: 'success',
-        message: 'Account created successfully!',
-        user: {
-          fullname: fullname,
-          username: username,
-          email: email
-        }
-      });
     });
-  });
+  } catch (error) {
+    console.error('Error creating account', error);
+    res.status(500).json({ error: 'Error creating account' });
+  }
+});
 
 // Endpoint untuk login
-  app.post('/api/login', (req, res) => {
-    // Logic untuk membuat akun
-    const email = req.body.email;
-    const password = req.body.password;
-  
-    // Pastikan kedua field username dan password terisi
-    if (!email || !password) {
-      return res.status(400).json({ error: 'Missing email or password' });
-    }
-  
-    // Query ke database untuk mencocokkan username dan password
-    const query = 'SELECT * FROM user_accounts WHERE email = $1 AND password = $2';
-    const values = [email, password];
-  
-    pool.query(query, values, (err, result) => {
-      if (err) {
-        console.error('Error executing query', err);
-        return res.status(500).json({ error: 'Error querying the database' });
-      }
-  
-      // Jika tidak ada hasil dari query, kredensial tidak cocok
-      if (result.rows.length === 0) {
-        return res.status(401).json({ error: 'Invalid email or password' });
-      }
+app.post('/api/login', async (req, res) => {
+  const { email, password } = req.body;
 
-      // Jika kredensial cocok, beri respons berhasil
-      res.status(200).json({
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Missing email or password' });
+  }
+
+  try {
+    const query = 'SELECT * FROM user_accounts WHERE email = $1';
+    const { rows } = await pool.query(query, [email]);
+
+    if (rows.length === 0) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+
+    const storedPassword = rows[0].password;
+    const match = await bcrypt.compare(password, storedPassword);
+
+    if (match) {
+      // Tandai status login dalam sesi
+      req.session.loggedIn = true;
+      
+      return res.status(200).json({
         status: 'success',
         message: 'Login successful!',
         user: {
-          fullname: result.rows[0].fullname,
-          username: result.rows[0].username,
-          email: result.rows[0].email
+          fullname: rows[0].fullname,
+          username: rows[0].username,
+          email: rows[0].email
         },
       });
-    });
-  });
+    } else {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+  } catch (error) {
+    console.error('Error during login', error);
+    res.status(500).json({ error: 'Error during login' });
+  }
+});
   
   // Endpoint untuk mendapatkan data dari database dari user account
   app.get('/api/data', (req, res) => {
@@ -107,6 +116,14 @@ pool.on('error', (err, client) => {
     });
   });
   
+  // Endpoint untuk memeriksa status login
+app.get('/api/checkLoginStatus', (req, res) => {
+  if (req.session.loggedIn) {
+    res.json({ loggedIn: true });
+  } else {
+    res.json({ loggedIn: false });
+  }
+});
   
   // Endpoint untuk appointment
   app.post('/api/appointmentForm', (req, res) => {
@@ -164,7 +181,19 @@ pool.on('error', (err, client) => {
     res.json(result.rows);
     });
   });
-  
+
+// Endpoint untuk logout
+app.post('/api/logout', (req, res) => {
+  // Hapus sesi pengguna saat ini
+    req.session.loggedIn = false;
+    req.session.destroy(err => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      return res.status(500).json({ error: 'Logout failed' });
+    }
+    res.status(200).json({ status: 'success', message: 'Logout successful' });
+  });
+});
 
 // Mulai server
   app.listen(port, () => {
