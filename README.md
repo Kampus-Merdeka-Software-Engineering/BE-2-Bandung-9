@@ -1,7 +1,7 @@
 # HARAPAN POLYCLINIC  ![Alt Text](https://github.com/Kampus-Merdeka-Software-Engineering/FE-2-Bandung-9/blob/main/images/logohp.png?raw=true)
 
 ## Deskripsi 
-Selamat datang di repository Backend Harapan Polyclinic. Proyek ini bertujuan memberikan pengalaman user untun melakukan pemesanan dokter yang lebih baik dan terorganisir secara online melalui situs web resmi Harapan Polyclinic.
+Selamat datang di repository Backend Harapan Polyclinic. Proyek ini bertujuan memberikan pengalaman user untuk melakukan pemesanan dokter yang lebih baik dan terorganisir secara online melalui situs web resmi Harapan Polyclinic.
 
 ## Tools yang digunakan pada Backend
 
