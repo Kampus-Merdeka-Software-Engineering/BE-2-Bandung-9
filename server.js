@@ -5,6 +5,7 @@ const { PrismaClient } = require('@prisma/client');
 const signupRouter = require('./routes/signup.routes');
 const loginRoutes = require('./routes/login.routes');
 const appointmentRoutes = require('./routes/appointment.routes');
+const DATABASE_URL = 'postgresql://postgres:bD4-ba2BA4EF1CG1e25adBdE3D2gCg*E@roundhouse.proxy.rlwy.net:34839/railway';
 
 const app = express();
 const port = 3000;
@@ -34,11 +35,11 @@ app.get('/api/checkLoginStatus', (req, res) => {
   res.json({ loggedIn: req.session.loggedIn || false });
 });
 
-app.use('/api/signup', signupRouter);
-app.use('/api/login', loginRoutes);
-app.use('/api/appointment', appointmentRoutes);
+app.use('/signup', signupRouter);
+app.use('/login', loginRoutes);
+app.use('/appointment', appointmentRoutes);
 
-app.post('/api/logout', (req, res) => {
+app.post('/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) {
       console.error('Error destroying session:', err);
