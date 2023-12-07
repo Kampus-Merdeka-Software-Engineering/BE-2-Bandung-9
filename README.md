@@ -38,6 +38,18 @@ npm init -y
 "script": {
     "start": "node server.js",
     "start:dev": "nodemon server.js"
+},
+```
+3. Install package express
+
+```bash
+npm install express 
+```
+
+4. Install devDependencies karena menggunakan nodemon.
+
+```bash
+npm install --save-dev nodemon
 ```
 
 ### 
