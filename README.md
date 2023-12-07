@@ -4,28 +4,30 @@
 Selamat datang di repositori Backend sisi server! Harapan Polyclinic adalah website digunakan untuk melakukan pemesanan jadwal secara online dokter yang ada di Harapan Polyclinic. Kami merupakan bagian dari Grup 09 Section Bandung RevoU MSIB KM AUG23.
 
 
-## 🖥 Teknologi yang Digunakan pada Backend
+## Teknologi 
 Website Harapan Polyclinic dibangun menggunakan teknologi:
 
 | Teknologi         | Keterangan                                                                                      |
 |-------------------|-------------------------------------------------------------------------------------------------|
-| HTML              | Digunakan untuk membuat struktur dasar situs web.                                               |
+| HTML              | Membuat struktur dasar situs web.                                                               |
 | CSS               | Bertanggung jawab atas tampilan dan gaya situs web.                                             |
 | JavaScript (JS)   | Menambahkan interaktivitas ke dalam situs web.                                                  |
 | Node.js           | Menjalankan sisi server proyek.                                                                 |
 | Express           | Framework Node.js yang digunakan untuk pengembangan web yang cepat.                             |
-| PostgreSQL        | Menyimpan data tentang pasien, dokter, jadwal praktik, dan pemesanan online                     |
-| Railway           | Railway digunakan untuk mendeploy aplikasi backend ke server                                    |
+| PostgreSQL        | Menyimpan data tentang data pasien, dokter, jadwal praktik, dan pemesanan secara online         |
+| Railway           | Mendeploy aplikasi backend ke server agar dapat terintegrasi dengan FE                          |
 
 ---
-## 🕹 Cara Penggunaan
+## 🕹 Tutorial Pengerjaan
 
-Berikut adalah panduan langkah demi langkah untuk menggunakan website Harapan Polyclinic dari Sisi Server:
+Berikut adalah tutorial untuk menggunakan website Harapan Polyclinic dari sisi Server:
 
 ### Syarat Awal
+- Pastikan telah menginstal Node.js yang dapat diunduh dari [Node.js website](https://nodejs.org/).
+- Pastikan telah menginstal PostgreSQL yang dapat diunduh dari [PostgreSQL website](https://www.postgresql.org/)
+- Pastikan telah mendaftarkan akun Railway dan hubungkan ke github repository Backend [Railway website](https://railway.app/)
 
-Pastikan telah memenuhi syarat berikut sebelum menjalankan website Sisi Server:
-- **Node.js**: Pastikan telah menginstal Node.js. Anda dapat mengunduhnya dari [Node.js website](https://nodejs.org/).
+### 
 
 ## Team 9 Section Bandung
 **HARAPAN POLYCLINIC** adalah project akhir dari Sofware Engineering yang telah dibangun dan diselesaikan oleh _group 9 Section Bandung KM AUG23_, MSIB (RevoU x MSIB Kemndikbudristek).
