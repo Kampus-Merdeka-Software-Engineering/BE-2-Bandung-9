@@ -51,6 +51,8 @@ npm install express
 ```bash
 npm install --save-dev nodemon
 ```
+Selanjutnya akan terunduh folder node_modules dan package-lock.json. Buat file .gitignore yang berfungai untuk tidak memasukkan file tersebut ke github yang berisi node_modules dan .env.
+
 
 ### 
 
