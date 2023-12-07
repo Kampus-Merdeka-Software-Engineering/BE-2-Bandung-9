@@ -1,9 +1,21 @@
 {
   "name": "klinik_harapan",
   "version": "1.0.0",
-  "description": "",
+  "description": "capstone project by group 9 made using express prisma and postgresql",
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:dev": "nodemon server.js"
+  },
+  "keywords": [
+    "express",
+    "prisma",
+    "postgresql"
+  ],
+  "author": "Rizky",
+  "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.6.0",
     "abbrev": "^1.1.1",
     "accepts": "^1.3.8",
     "anymatch": "^3.1.3",
@@ -30,6 +42,7 @@
     "define-data-property": "^1.1.1",
     "depd": "^2.0.0",
     "destroy": "^1.2.0",
+    "dotenv": "^16.3.1",
     "ee-first": "^1.1.1",
     "encodeurl": "^1.0.2",
     "escalade": "^3.1.1",
@@ -77,6 +90,7 @@
     "minimatch": "^3.1.2",
     "ms": "^2.0.0",
     "negotiator": "^0.6.3",
+    "nodemon": "^3.0.1",
     "nopt": "^1.0.10",
     "normalize-path": "^3.0.0",
     "object-inspect": "^1.13.1",
@@ -133,14 +147,7 @@
     "xtend": "^4.0.2",
     "yallist": "^4.0.0"
   },
-  "scripts": {
-    "start": "node server.js",
-    "start:dev": "nodemon app.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "prisma": "^5.6.0"
   }
 }
