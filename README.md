@@ -28,7 +28,17 @@ Berikut adalah tutorial untuk pembuatan website Harapan Polyclinic dari sisi ser
 - Pastikan telah menginstal PostgreSQL yang dapat diunduh dari [PostgreSQL website](https://www.postgresql.org/)
 - Pastikan telah mendaftarkan akun Railway dan hubungkan ke github repository Backend [Railway website](https://railway.app/)
 
-
+### Langkah-Langkah
+1. Inisiasi project npm
+```bash
+npm init -y
+```
+2. Pada package.json ganti start dengan node server.js dan tambahkan start:dev
+```
+"script": {
+    "start": "node server.js",
+    "start:dev": "nodemon server.js"
+```
 
 ### 
 
