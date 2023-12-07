@@ -20,7 +20,13 @@ app.use(session({
   saveUninitialized: true
 }));
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: DATABASE_URL,
+    },
+  },
+});
 
 // Middleware untuk menyimpan status login
 app.use((req, res, next) => {
