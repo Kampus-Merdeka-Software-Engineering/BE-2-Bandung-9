@@ -18,9 +18,53 @@ Website Harapan Polyclinic dibangun menggunakan teknologi:
 | Railway           | Mendeploy aplikasi backend ke server agar dapat terintegrasi dengan FE                          |
 
 ---
-## 🕹 Tutorial Pengerjaan
+## 🕹 Tutorial Penggunaan
 
-Berikut adalah tutorial untuk menggunakan website Harapan Polyclinic dari sisi Server:
+Berikut adalah tutorial untuk menggunakan website Harapan Polyclinic dari sisi server:
+
+### Syarat Awal
+- Pastikan telah menginstal Node.js yang dapat diunduh dari [Node.js website](https://nodejs.org/).
+
+### Langkah 1: Clone Repository
+
+1. Buka terminal atau command prompt di komputer.
+2. Gunakan perintah berikut untuk mengklon repositori XGrow Sisi Server:
+
+   ```bash
+   git clone https://github.com/Kampus-Merdeka-Software-Engineering/BE-2-Bandung-9.git
+   
+3. Pindah ke direktori repositori:
+
+   ```bash
+   cd back-end-capstone-project-section-bandung-2-group-9
+   
+### Langkah 2: Memastikan semua dependencies terinstal
+
+1. Buka terminal atau command prompt di komputer.
+2. Gunakan perintah berikut untuk memastikan dependencies terinstal:
+
+   ```bash
+   npm install
+   
+### Langkah 3: Menjalankan Harapan Polyclinic sisi server
+
+1. Buka terminal atau command prompt di komputer.
+2. Gunakan perintah berikut untuk menjalankan file JavaScript untuk menjalankan server
+
+   ```bash
+   node index.js
+
+### Langkah 4: Membuka Website Harapan Polyclinic di Local
+
+1. Buka browser di komputer.
+2. Gunakan link http://localhost:3000/
+3. Dengan mengikuti langkah-langkah telah dapat menggunakan website secara lokal pada komputer.
+
+<br>
+
+## 🕹 Tutorial Pengerjaan Capstone
+
+Berikut adalah tutorial untuk pembuatan website Harapan Polyclinic dari sisi server:
 
 ### Syarat Awal
 - Pastikan telah menginstal Node.js yang dapat diunduh dari [Node.js website](https://nodejs.org/).
