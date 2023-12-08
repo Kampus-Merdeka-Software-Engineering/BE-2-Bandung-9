@@ -1,10 +1,11 @@
 const express = require('express');
-const appointmentRoutes = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+function appointmentRoutes(prisma) {
+  const router = express.Router();
 // Get all appointments
-appointmentRoutes.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const appointments = await prisma.appointment.findMany();
     res.json(appointments);
@@ -15,7 +16,7 @@ appointmentRoutes.get('/', async (req, res) => {
 });
 
 // Create a new appointment
-appointmentRoutes.post('/', async (req, res) => {
+router.post('/', async (req, res) => {
   const { title, name, birthdate, gender, address, phone, email, doctor, date, time } = req.body;
 
   if (!title || !name || !birthdate || !gender || !address || !phone || !email || !doctor || !date || !time) {
@@ -48,5 +49,8 @@ appointmentRoutes.post('/', async (req, res) => {
     res.status(500).json({ error: 'Error creating appointment' });
   }
 });
+
+return router;
+}
 
 module.exports = appointmentRoutes;
