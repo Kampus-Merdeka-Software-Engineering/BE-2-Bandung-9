@@ -1,11 +1,10 @@
 const express = require('express');
+const loginRoutes = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const bcrypt = require('bcrypt');
-function loginRoutes(prisma) {
-  const router = express.Router();
 
-router.post('/', async (req, res) => {
+loginRoutes.post('/', async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json({ error: 'Missing email or password' });
@@ -39,7 +38,6 @@ router.post('/', async (req, res) => {
     res.status(500).json({ error: 'Error during login' });
   }
 });
-return router;
 
-}
 module.exports = loginRoutes;
+
