@@ -1,12 +1,11 @@
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcrypt');
-const DATABASE_URL = 'postgresql://postgres:bD4-ba2BA4EF1CG1e25adBdE3D2gCg*E@roundhouse.proxy.rlwy.net:34839/railway';
 
 const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: DATABASE_URL,
+      url: 'postgresql://postgres:bD4-ba2BA4EF1CG1e25adBdE3D2gCg*E@roundhouse.proxy.rlwy.net:34839/railway',
     },
   },
 });

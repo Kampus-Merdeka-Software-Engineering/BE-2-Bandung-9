@@ -29,13 +29,11 @@ const prisma = new PrismaClient({
   },
 });
 
-// Middleware untuk menyimpan status login
 app.use((req, res, next) => {
   res.locals.loggedIn = req.session.loggedIn || false;
   next();
 });
 
-// Routes
 app.get('/api/checkLoginStatus', (req, res) => {
   res.json({ loggedIn: req.session.loggedIn || false });
 });
@@ -55,5 +53,5 @@ app.post('/logout', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server berjalan pada port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
