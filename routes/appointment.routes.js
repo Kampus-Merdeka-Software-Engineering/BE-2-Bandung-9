@@ -1,7 +1,16 @@
 const express = require('express');
-const appointmentRoutes = express.Router();
 const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const DATABASE_URL = 'postgresql://postgres:bD4-ba2BA4EF1CG1e25adBdE3D2gCg*E@roundhouse.proxy.rlwy.net:34839/railway';
+
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: DATABASE_URL,
+    },
+  },
+});
+
+const appointmentRoutes = express.Router();
 
 // Get all appointments
 appointmentRoutes.get('/', async (req, res) => {
@@ -50,4 +59,3 @@ appointmentRoutes.post('/', async (req, res) => {
 });
 
 module.exports = appointmentRoutes;
-

@@ -5,6 +5,7 @@ const { PrismaClient } = require('@prisma/client');
 const signupRouter = require('./routes/signup.routes');
 const loginRoutes = require('./routes/login.routes');
 const appointmentRoutes = require('./routes/appointment.routes');
+
 const DATABASE_URL = 'postgresql://postgres:bD4-ba2BA4EF1CG1e25adBdE3D2gCg*E@roundhouse.proxy.rlwy.net:34839/railway';
 
 const app = express();
@@ -34,9 +35,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes (misalnya: /api/signup, /api/login, /api/appointmentData, dll.)
-
-// Gunakan routes yang telah diperbaiki, seperti signup.routes.js, login.routes.js, appointment.routes.js
+// Routes
 app.get('/api/checkLoginStatus', (req, res) => {
   res.json({ loggedIn: req.session.loggedIn || false });
 });
@@ -58,4 +57,3 @@ app.post('/logout', (req, res) => {
 app.listen(port, () => {
   console.log(`Server berjalan pada port ${port}`);
 });
-

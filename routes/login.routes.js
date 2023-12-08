@@ -1,8 +1,17 @@
 const express = require('express');
-const loginRoutes = express.Router();
 const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
 const bcrypt = require('bcrypt');
+const DATABASE_URL = 'postgresql://postgres:bD4-ba2BA4EF1CG1e25adBdE3D2gCg*E@roundhouse.proxy.rlwy.net:34839/railway';
+
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: DATABASE_URL,
+    },
+  },
+});
+
+const loginRoutes = express.Router();
 
 loginRoutes.post('/', async (req, res) => {
   const { email, password } = req.body;
@@ -40,4 +49,3 @@ loginRoutes.post('/', async (req, res) => {
 });
 
 module.exports = loginRoutes;
-
