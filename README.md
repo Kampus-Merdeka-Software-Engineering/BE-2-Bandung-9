@@ -15,7 +15,7 @@ Website Harapan Polyclinic dibangun menggunakan teknologi:
 | Node.js           | Menjalankan sisi server proyek.                                                                 |
 | Express           | Framework Node.js yang digunakan untuk pengembangan web yang cepat.                             |
 | PostgreSQL        | Menyimpan data tentang data pasien, dokter, jadwal praktik, dan pemesanan secara online         |
-| Cyclic            | Mendeploy server agar dapat terintegrasi dengan FE                                              |
+| Railway           | Mendeploy server agar dapat terintegrasi dengan FE                                              |
 
 ---
 
@@ -26,7 +26,7 @@ Berikut adalah tutorial untuk pembuatan website Harapan Polyclinic dari sisi ser
 ### Syarat Awal
 - Pastikan telah menginstal Node.js yang dapat diunduh dari [Node.js website](https://nodejs.org/).
 - Pastikan telah menginstal PostgreSQL yang dapat diunduh dari [PostgreSQL website](https://www.postgresql.org/).
-- Pastikan telah mendaftarkan akun Cyclic dan hubungkan ke github repository Backend [Cyclic website](https://www.cyclic.sh/).
+- Pastikan telah mendaftarkan akun Cyclic dan hubungkan ke github repository Backend [Railway website](https://railway.app/).
 
 ### Langkah-Langkah
 1. Inisiasi project npm
