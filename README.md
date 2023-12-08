@@ -1,7 +1,7 @@
 # HARAPAN POLYCLINIC  ![Alt Text](https://github.com/Kampus-Merdeka-Software-Engineering/FE-2-Bandung-9/blob/main/images/logohp.png?raw=true)
 
 ## Deskripsi 
-Selamat datang di repositori Backend sisi server! Harapan Polyclinic adalah website digunakan untuk melakukan pemesanan jadwal secara online dokter yang ada di Harapan Polyclinic. Kami merupakan bagian dari Grup 09 Section Bandung RevoU MSIB KM AUG23.
+Selamat datang di repositori Backend sisi server!. Website Harapan Polyclinic adalah website digunakan untuk melakukan pemesanan jadwal janji temu secara online dengan dokter yang ada di Harapan Polyclinic. Kami merupakan bagian dari Grup 09 Section Bandung RevoU MSIB KM AUG23.
 
 
 ## Teknologi 
@@ -40,10 +40,14 @@ npm init -y
     "start:dev": "nodemon server.js"
 },
 ```
-3. Install package express
+3. Install package express dan cors
 
 ```bash
 npm install express 
+```
+
+```bash
+npm install cors 
 ```
 
 4. Install devDependencies karena menggunakan nodemon.
@@ -53,6 +57,115 @@ npm install --save-dev nodemon
 ```
 Selanjutnya akan terunduh folder node_modules dan package-lock.json. Buat file .gitignore yang berfungai untuk tidak memasukkan file tersebut ke github yang berisi node_modules dan .env.
 
+5. Membuat file index.js yang berisi selanjutnya melakukan update pada `package.json` 
+
+```json
+"scripts": {
+  "start": "node index.js",
+  "start:dev": "nodemon index.js"
+}
+```
+
+6. import package express, cors, dan lain-lain. Selanjutnya membuat satu rute untuk mencoba aplikasi
+````
+const express = require('express');
+const cors = require('cors');
+const session = require('express-session');
+const { PrismaClient } = require('@prisma/client');
+const signupRouter = require('./routes/signup.routes');
+const loginRoutes = require('./routes/login.routes');
+const appointmentRoutes = require('./routes/appointment.routes');
+const DATABASE_URL = 'postgresql://postgres:bD4-ba2BA4EF1CG1e25adBdE3D2gCg*E@roundhouse.proxy.rlwy.net:34839/railway';
+
+const app = express();
+const port = 3000;
+
+app.use(cors());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+app.use(session({
+  secret: 'secret_key',
+  resave: false,
+  saveUninitialized: true
+}));
+
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: DATABASE_URL,
+    },
+  },
+});
+
+// Middleware untuk menyimpan status login
+app.use((req, res, next) => {
+  res.locals.loggedIn = req.session.loggedIn || false;
+  next();
+});
+
+// Routes (misalnya: /api/signup, /api/login, /api/appointmentData, dll.)
+
+// Gunakan routes yang telah diperbaiki, seperti signup.routes.js, login.routes.js, appointment.routes.js
+app.get('/api/checkLoginStatus', (req, res) => {
+  res.json({ loggedIn: req.session.loggedIn || false });
+});
+
+app.use('/signup', signupRouter);
+app.use('/login', loginRoutes);
+app.use('/appointment', appointmentRoutes);
+
+app.post('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      return res.status(500).json({ error: 'Logout failed' });
+    }
+    res.status(200).json({ status: 'success', message: 'Logout successful' });
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Server berjalan pada port ${port}`);
+});
+````
+
+7. lanjut dalam integrasi project ini dengan prisma agar kita bisa terhubung dengan database dan melakukan pengambilan/masukin data ke database dengan [Prisma website](https://prisma.io/).
+
+8. inisialisasi proyek Node.js dan tambahkan Prisma CLI sebagai dependensi pengembangan ke dalamnya menggunakan JavaScript dengan database PostgreSQL:
+
+```bash
+npm init -y
+npm install prisma --save-dev
+```
+
+9. Memanggil prisma
+
+```bash
+npx prisma
+```
+
+10. Membuat file schema
+```
+npx prisma init
+```
+
+11. Setelah diinstal terdapat file .env yang berisi Database_URL 
+
+
+12. Setelah mendefinisikan model di `schema.prisma`dapat melakukan sinkronisasi database di PostgreSQL dengan schema yang sudah dibuat menggunakan kode:
+`npx prisma db push`
+
+13.  Agar dapat menggunakan Prisma ORM perlu menggunakan package `@prisma/client` untuk membuat koneksi dengan prisma dan melakukan operasi CRUD. Membuat file `config` dan diberi nama `prisma.js` dengan kode:
+
+```bash
+// prisma.js
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
+module.exports = { prisma };
+```
+
+14. Setelah dibuat menjadi suatu config, untuk bisa digunakan di file yang lain kita bisa langsung gunakan saja untuk mengambil data dari database atau hal yang lain seperti memasukkan data, update data, mengambil relasi, dan lain-lain.
 
 ### 
 
@@ -71,3 +184,18 @@ Dimana perancangan dan pengembangan website ini dikembangkan oleh :
 | Egia Ninta Ginting  |  Quality Assurance |
 
 
+## Contact Us
+
+Jika Anda memiliki pertanyaan lebih lanjut atau membutuhkan bantuan hubungi kami:
+
+- Email: harapanpolyclinic@gmail.com
+- Phone: +62 123 456 789
+- Loc: 123 Main Street, Jakarta, 78901, Indonesia.
+
+## Terima Kasih
+
+Kami mengucapkan terima kasih atas kunjungan Anda ke repository kami. Semoga website Harapan Polyclinic dapat bermanfaat bagi Anda dan memberikan kemudahan dalam mendapatkan layanan kesehatan.
+
+Dengan rasa hormat,
+
+Tim Harapan Polyclinic _Group 9 - Section Bandung_
