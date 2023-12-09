@@ -4,7 +4,7 @@
   "description": "capstone project by group 9 made using express prisma and postgresql",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "npx prisma generate && node server.js",
     "start:dev": "nodemon server.js"
   },
   "keywords": [
