@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
-const { PrismaClient } = require('@prisma/client');
+const { prisma } = require('./config/prisma');
 const signupRouter = require('./routes/signup.routes');
 const loginRoutes = require('./routes/login.routes');
 const appointmentRoutes = require('./routes/appointment.routes');
@@ -21,7 +21,7 @@ app.use(session({
   saveUninitialized: true
 }));
 
-const prisma = new PrismaClient({
+const prisma = new prisma({
   datasources: {
     db: {
       url: DATABASE_URL,
