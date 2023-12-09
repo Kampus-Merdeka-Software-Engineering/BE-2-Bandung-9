@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const session = require('express-session');
+const session = require('cookie-session');
+// const session = require('express-session');
 const { PrismaClient } = require('@prisma/client');
 const signupRouter = require('./routes/signup.routes');
 const loginRoutes = require('./routes/login.routes');
