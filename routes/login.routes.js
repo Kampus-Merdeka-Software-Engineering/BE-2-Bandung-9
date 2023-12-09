@@ -32,7 +32,6 @@ loginRoutes.post('/', async (req, res) => {
     const match = await bcrypt.compare(password, user.password);
 
     if (match) {
-      req.session.loggedIn = true;
       return res.status(200).json({
         status: 'success',
         message: 'Login successful!',
