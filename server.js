@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const session = require('cookie-session');
+// const session = require('cookie-session');
 // const session = require('express-session');
 const { PrismaClient } = require('@prisma/client');
 const signupRouter = require('./routes/signup.routes');
@@ -22,7 +22,7 @@ app.use(express.json());
 //   saveUninitialized: true
 // }));
 
-const prisma = new PrismaClient({
+const  { PrismaClient } = new PrismaClient({
   datasources: {
     db: {
       url: DATABASE_URL,
@@ -39,9 +39,9 @@ const prisma = new PrismaClient({
 //   res.json({ loggedIn: req.session.loggedIn || false });
 // });
 
-app.use('/signup', signupRouter);
-app.use('/login', loginRoutes);
-app.use('/appointment', appointmentRoutes);
+app.use('api/signup', signupRouter);
+app.use('api/login', loginRoutes);
+app.use('api/appointment', appointmentRoutes);
 
 app.post('/logout', (req, res) => {
   // req.session.destroy(err => {
