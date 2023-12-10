@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "appointment" ALTER COLUMN "birthdate" SET DATA TYPE TIMESTAMP(3),
-ALTER COLUMN "date" SET DATA TYPE TIMESTAMP(3);

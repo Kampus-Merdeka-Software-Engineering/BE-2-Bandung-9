@@ -14,7 +14,7 @@ CREATE TABLE "appointment" (
     "appointment_id" SERIAL NOT NULL,
     "title" VARCHAR(50) NOT NULL,
     "name" VARCHAR(100) NOT NULL,
-    "birthdate" TIMESTAMP(3) NOT NULL,
+    "birthdate" DATE NOT NULL,
     "gender" VARCHAR(10) NOT NULL,
     "address" TEXT NOT NULL,
     "phone" VARCHAR(20) NOT NULL,

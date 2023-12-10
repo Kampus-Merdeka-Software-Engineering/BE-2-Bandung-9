@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "appointment" ALTER COLUMN "birthdate" SET DEFAULT CURRENT_TIMESTAMP;
