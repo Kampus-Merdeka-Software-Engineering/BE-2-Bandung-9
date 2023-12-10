@@ -7,7 +7,7 @@ const signupRouter = require('./routes/signup.routes');
 const loginRoutes = require('./routes/login.routes');
 const appointmentRoutes = require('./routes/appointment.routes');
 
-const DATABASE_URL = 'postgresql://postgres:bD4-ba2BA4EF1CG1e25adBdE3D2gCg*E@roundhouse.proxy.rlwy.net:34839/railway';
+// const DATABASE_URL = 'postgresql://postgres:bD4-ba2BA4EF1CG1e25adBdE3D2gCg*E@roundhouse.proxy.rlwy.net:34839/railway';
 
 const app = express();
 const port = 3000;
@@ -22,13 +22,13 @@ app.use(express.json());
 //   saveUninitialized: true
 // }));
 
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: DATABASE_URL,
-    },
-  },
-});
+// const prisma = new PrismaClient({
+//   datasources: {
+//     db: {
+//       url: DATABASE_URL,
+//     },
+//   },
+// });
 
 // app.use((req, res, next) => {
 //   res.locals.loggedIn = req.session.loggedIn || false;
