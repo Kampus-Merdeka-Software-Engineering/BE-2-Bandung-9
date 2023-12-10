@@ -2,13 +2,6 @@ const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcrypt');
 
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: 'postgresql://postgres:-66*d4AeG6Cd4b*2adDDdBdd-2463-ed@roundhouse.proxy.rlwy.net:28666/railway',
-    },
-  },
-});
 
 const loginRoutes = express.Router();
 
