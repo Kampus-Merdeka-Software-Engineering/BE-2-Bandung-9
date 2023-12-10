@@ -2,6 +2,13 @@ const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcrypt');
 
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: 'postgresql://postgres:-66*d4AeG6Cd4b*2adDDdBdd-2463-ed@roundhouse.proxy.rlwy.net:28666/railway',
+    },
+  },
+});
 
 const loginRoutes = express.Router();
 
@@ -25,7 +32,7 @@ loginRoutes.post('/', async (req, res) => {
     const match = await bcrypt.compare(password, user.password);
 
     if (match) {
-      // req.session.loggedIn = true;
+      req.session.loggedIn = true;
       return res.status(200).json({
         status: 'success',
         message: 'Login successful!',

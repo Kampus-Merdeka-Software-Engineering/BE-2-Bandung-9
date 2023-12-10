@@ -1,6 +1,14 @@
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
+const DATABASE_URL = 'postgresql://postgres:-66*d4AeG6Cd4b*2adDDdBdd-2463-ed@roundhouse.proxy.rlwy.net:28666/railway';
 
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: DATABASE_URL,
+    },
+  },
+});
 
 const appointmentRoutes = express.Router();
 
