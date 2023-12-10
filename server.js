@@ -8,7 +8,7 @@ const signupRouter = require('./routes/signup.routes');
 const loginRoutes = require('./routes/login.routes');
 const appointmentRoutes = require('./routes/appointment.routes');
 
-const DATABASE_URL = 'postgresql://postgres:bD4-ba2BA4EF1CG1e25adBdE3D2gCg*E@roundhouse.proxy.rlwy.net:34839/railway';
+const DATABASE_URL = 'postgresql://postgres:-66*d4AeG6Cd4b*2adDDdBdd-2463-ed@roundhouse.proxy.rlwy.net:28666/railway';
 
 const app = express();
 const port = 3000;

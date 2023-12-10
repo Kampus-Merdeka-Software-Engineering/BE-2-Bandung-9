@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: 'postgresql://postgres:bD4-ba2BA4EF1CG1e25adBdE3D2gCg*E@roundhouse.proxy.rlwy.net:34839/railway',
+      url: 'postgresql://postgres:-66*d4AeG6Cd4b*2adDDdBdd-2463-ed@roundhouse.proxy.rlwy.net:28666/railway',
     },
   },
 });
